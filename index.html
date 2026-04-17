@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="theme-color" content="#8a2be2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MOS3AB">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./icon-192.png">
     <title>MOS3AB</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode"></script>
@@ -49,77 +51,10 @@
         .btn:active { transform: scale(0.98); }
         .btn-primary { background: var(--primary); width: 100%; height: 50px; font-size: 16px; margin-top: 10px; box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3); }
        
-        .table-wrapper { overflow-x: auto; border-radius: 15px; margin-bottom: 15px; -webkit-overflow-scrolling: touch; }
+        .table-wrapper { overflow-x: auto; border-radius: 15px; margin-bottom: 15px; }
         table { width: 100%; border-collapse: collapse; background: transparent; min-width: 600px; }
         th, td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
         th { color: var(--gold); font-weight: 700; }
-
-        /* تحسين شكل الجداول على الموبايل ليصبح كروت احترافية */
-        @media (max-width: 600px) {
-            .table-wrapper table, .table-wrapper thead, .table-wrapper tbody, .table-wrapper th, .table-wrapper td, .table-wrapper tr { 
-                display: block; 
-            }
-            .table-wrapper thead tr { 
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            .table-wrapper tr { 
-                border: 1px solid rgba(255,255,255,0.1); 
-                margin-bottom: 20px; 
-                background: var(--card);
-                border-radius: 20px;
-                padding: 15px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            }
-            .table-wrapper td { 
-                border: none;
-                position: relative;
-                padding: 12px 0;
-                padding-right: 40%; 
-                text-align: left !important;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-            .table-wrapper td:last-child { 
-                border-bottom: none; 
-                padding-top: 15px;
-                display: block;
-                padding-right: 0;
-            }
-            .table-wrapper td:before { 
-                content: attr(data-label);
-                position: absolute;
-                right: 0;
-                font-weight: 800;
-                color: var(--gold);
-                font-size: 13px;
-                text-transform: uppercase;
-            }
-            /* تظبيط زراير الإدارة في الموبايل */
-            .table-wrapper td[data-label="إدارة"] div {
-                display: grid !important;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-                width: 100%;
-            }
-            .table-wrapper td[data-label="إدارة"] .btn {
-                width: 100%;
-                height: 40px;
-            }
-        }
-
-        /* تحسين شكل كل الطلاب على الموبايل */
-        #allStudentsHubList {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-        @media (max-width: 500px) {
-            #allStudentsHubList { grid-template-columns: 1fr; }
-        }
         .phone-link { color: var(--info); text-decoration: none; font-size: 11px; display: block; margin-top: 4px; }
         .small-date { font-size: 10px; opacity: 0.8; display: block; }
         
@@ -158,6 +93,9 @@
         .danger-zone { border:1px dashed rgba(255,94,98,.6); border-radius:14px; padding:10px; background: rgba(255,94,98,.08); margin-top:10px; }
         .table-wrapper table { min-width: 100%; }
         th, td { white-space: normal; word-break: break-word; }
+        .mobile-row { display: none; }
+        .mobile-student-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 10px; }
+        .mobile-actions { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 6px; margin-top: 10px; }
         @media (max-width: 740px) {
             .stats-grid, .kpi-grid, .quick-actions, .hub-actions { grid-template-columns: 1fr; }
             .nav h2 { font-size: 17px; }
@@ -169,6 +107,16 @@
             .modal-content { width: 95%; max-width: 95%; padding: 18px; }
             .btn { font-size: 14px; padding: 10px; }
             .glass-box { padding: 15px; }
+            .container { width: 97%; padding-top: 12px; }
+            #groupFilterBox { grid-template-columns: 1fr !important; }
+            table { min-width: 100%; }
+            .table-wrapper thead { display: none; }
+            .table-wrapper .desktop-row { display: none; }
+            .table-wrapper .mobile-row { display: table-row; }
+            .table-wrapper td { padding: 8px; }
+            .mobile-actions .btn { min-height: 40px; font-size: 13px; }
+            #sessionBanner { flex-direction: column; align-items: stretch; }
+            #sessionBanner > div:last-child { display: grid !important; grid-template-columns: 1fr 1fr; }
         }
        
         .honor-section { background: linear-gradient(45deg, rgba(138,43,226,0.12), rgba(0,212,255,0.12)); border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(255,215,0,0.1); }
@@ -181,173 +129,97 @@
         .hw-btn { height: 45px; font-size: 14px; }
         
         .wa-btn-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        
-        /* شاشة دخول كرييتف فشخ */
-        #loginOverlay {
-            position: fixed;
-            inset: 0;
-            background: #0b0a14;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            overflow: hidden;
-            transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* شاشة الدخول الاحترافية */
+#loginOverlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top right, rgba(138,43,226,0.25), transparent 20%),
+                radial-gradient(circle at bottom left, rgba(0,212,255,0.18), transparent 18%),
+                linear-gradient(135deg, #12111f 0%, #0b0a14 100%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; transition: 0.5s;
+}
 
-        /* خلفية متحركة */
-        .login-bg-blobs {
-            position: absolute;
-            inset: 0;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-        .blob {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-        .blob-1 { background: var(--primary); top: -100px; left: -100px; }
-        .blob-2 { background: var(--info); bottom: -100px; right: -100px; animation-delay: -5s; }
-        .blob-3 { background: var(--success); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-duration: 15s; }
+.login-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 34px 30px 26px;
+    border-radius: 28px;
+    width: min(95%, 380px);
+    text-align: center;
+    box-shadow: 0 28px 70px rgba(0,0,0,0.45);
+    position: relative;
+    overflow: hidden;
+    animation: floatCard 4.5s ease-in-out infinite;
+}
+.login-card::before {
+    content: "";
+    position: absolute;
+    inset: -40% -20% auto -20%;
+    height: 220px;
+    background: radial-gradient(circle, rgba(138,43,226,.25), transparent 55%);
+    pointer-events: none;
+}
 
-        @keyframes move {
-            from { transform: translate(0, 0) rotate(0deg) scale(1); }
-            to { transform: translate(100px, 50px) rotate(180deg) scale(1.2); }
-        }
+.brand-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 18px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(138,43,226,0.95), rgba(0,212,255,0.95));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.35);
+}
+.login-badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.11);
+    font-size: 11px;
+    letter-spacing: .8px;
+}
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+.brand-logo small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.9px;
+    opacity: 0.75;
+    margin-top: 2px;
+}
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 35px;
-            width: min(90%, 420px);
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            position: relative;
-            animation: cardAppear 1s backwards;
-        }
+.login-card h2 { color: #fff; margin-bottom: 6px; font-weight: 800; letter-spacing: .5px; }
+.login-sub { opacity:.85; font-size:14px; margin-bottom: 22px; color: #d8d8ff; }
 
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+.login-card input {
+    width: 100%; padding: 12px; margin-bottom: 18px;
+    border-radius: 12px; border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff; outline: none;
+}
 
-        .login-card h2 {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, #a7a7a7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+.login-card button {
+    width: 100%; padding: 14px; border-radius: 14px;
+    border: none; background: linear-gradient(135deg, #8a2be2, #4e73df);
+    color: white; font-weight: 700; cursor: pointer; transition: 0.3s;
+}
 
-        .login-sub {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
-            text-align: right;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            color: var(--gold);
-            margin-bottom: 8px;
-            margin-right: 5px;
-            font-weight: 600;
-        }
-
-        .login-card input {
-            width: 100%;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            color: #fff;
-            font-size: 15px;
-            transition: 0.3s;
-            outline: none;
-            margin: 0;
-        }
-
-        .login-card input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
-        }
-
-        .login-card button {
-            width: 100%;
-            padding: 16px;
-            margin-top: 10px;
-            border-radius: 15px;
-            border: none;
-            background: linear-gradient(135deg, var(--primary), #6200ea);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.4s;
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
-        }
-
-        .login-card button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
-            filter: brightness(1.1);
-        }
-
-        .login-card button:active { transform: translateY(-1px); }
-
-        .login-footer {
-            margin-top: 25px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.5px;
-        }
-
-        #loginError {
-            background: rgba(255, 94, 98, 0.1);
-            border: 1px solid var(--danger);
-            color: var(--danger);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 13px;
-            margin-top: 15px;
-            display: none;
-        }
-
-        /* تأثير الـ Glass Shine */
-        .login-card::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-            transform: rotate(45deg);
-            animation: shine 6s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        .watermark {
+.login-card button:hover { background: linear-gradient(135deg, #6d23d5, #3456c9); }
+.login-footer {
+    margin-top: 18px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.67);
+}
+.watermark {
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -363,36 +235,18 @@
 <body id="bodyTag">
     <!-- <div class="watermark">Developed by Mosaab</div> -->
     <div id="loginOverlay">
-        <div class="login-bg-blobs">
-            <div class="blob blob-1"></div>
-            <div class="blob blob-2"></div>
-            <div class="blob blob-3"></div>
-        </div>
-        <div class="login-card">
-            <div style="margin-bottom: 25px;">
-                <div style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--primary), var(--info)); border-radius: 20px; margin: 0 auto 15px; display: grid; place-items: center; font-size: 30px; box-shadow: 0 10px 20px rgba(138,43,226,0.3);">🏛️</div>
-                <h2>MOS3AB System</h2>
-                <div class="login-sub">مرحباً بك في النسخة المطورة من نظام الإدارة</div>
-            </div>
-            
-            <div class="input-group">
-                <label>👤 اسم المستخدم</label>
-                <input type="text" id="adminUser" placeholder="أدخل اسم المستخدم">
-            </div>
-            
-            <div class="input-group">
-                <label>🔒 كلمة المرور</label>
-                <input type="password" id="adminPass" placeholder="أدخل كلمة المرور">
-            </div>
-            
-            <button onclick="handleLogin()">تسجيل الدخول</button>
-            <p id="loginError">خطأ في البيانات، حاول مرة أخرى!</p>
-            
-            <div class="login-footer">
-                &copy; 2026 MOS3AB ELSHARKSY - ALL RIGHTS RESERVED
-            </div>
-        </div>
+    <div class="login-card">
+        <div class="brand-logo">M<small>MOS3AB</small></div>
+        <div class="login-badge">SMART DASHBOARD</div>
+        <h2>تسجيل الدخول</h2>
+        <div class="login-sub">أدخل بياناتك للوصول إلى لوحة التحكم</div>
+        <input type="text" id="adminUser" placeholder="اسم المستخدم">
+        <input type="password" id="adminPass" placeholder="كلمة المرور">
+        <button onclick="handleLogin()">دخول</button>
+        <p id="loginError" style="color: #ff5e5e; display: none; margin-top: 15px;">البيانات غير صحيحة!</p>
+        <div class="login-footer">نسخة متقدمة من نظام MOS3AB لإدارة الطلاب</div>
     </div>
+</div>
     <div class="nav">
         <div>
             <h2 style="font-size:18px; letter-spacing:1px;">MOS3AB</h2>
@@ -502,11 +356,10 @@
 </footer>
 
     <script>
-        // Register service worker for PWA
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW registered'))
-                .catch(err => console.log('SW registration failed', err));
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed', err));
+            });
         }
         let trustedTimeOffsetMs = Number(localStorage.getItem('trusted_time_offset_ms') || '0');
         let clockTrustState = localStorage.getItem('clock_trust_state') || 'device';
@@ -961,9 +814,6 @@ async function flushSyncQueue() {
     }
     localStorage.setItem('offline_queue_v1', JSON.stringify(offlineQueue));
 }
-window.addEventListener('online', flushSyncQueue);
-flushSyncQueue(); // محاولة المزامنة عند الفتح لو فيه نت
-
         function toggleDarkMode() {
             const isLight = document.getElementById('bodyTag').classList.toggle('light-mode');
             localStorage.setItem('theme_mode', isLight ? 'light' : 'dark');
@@ -1075,6 +925,7 @@ function addStudent() {
     let nT = document.getElementById('sN').value.toLowerCase();
     let sPT = (document.getElementById('sSP').value || '').toLowerCase();
     let pPT = (document.getElementById('sPP').value || '').toLowerCase();
+    const isMobileView = window.innerWidth <= 740;
     let html = '';
     let filteredCount = 0;
 
@@ -1092,8 +943,35 @@ function addStudent() {
             const missedCount = getMissedSessionsCount(s);
             const isDanger = missedCount >= 2;
             const groupTheme = getGroupThemeById(s.groupId);
-            html += `<tr>
-                <td data-label="بيانات الطالب" style="text-align:right; border-right:4px solid ${groupTheme}" class="${isDanger ? 'danger-glow' : ''}">
+            if (isMobileView) {
+                html += `<tr class="mobile-row">
+                <td colspan="4">
+                    <div class="mobile-student-card ${isDanger ? 'danger-glow' : ''}" style="border-right:4px solid ${groupTheme}">
+                        <b>${s.name}</b><br>
+                        <small style="opacity:.9">🎓 ${s.year} | 📍 ${s.center}</small><br>
+                        <span class="pill">👥 ${s.groupName || 'بدون مجموعة'}</span>
+                        <span class="pill">🏠 ${s.address || '---'}</span><br>
+                        <a class="phone-link" href="tel:${s.sPhone}">📱 الطالب: ${s.sPhone}</a>
+                        <a class="phone-link" href="tel:${s.pPhone}" style="color:var(--warning)">👨‍👩‍👦 ولي الأمر: ${s.pPhone}</a>
+                        <div class="small-date">📅 تسجيل: ${s.regDate}</div>
+                        <div class="small-date" style="color:var(--success)">💳 دفع: ${s.payDate || '---'}</div>
+                        <div class="small-date" style="color:var(--danger)">⚠️ غياب: ${missedCount}</div>
+                        <div class="mobile-actions">
+                            <button class="btn" style="background:${s.payment?'var(--success)':'#444'}" onclick="openPaymentModal(${i})">${s.payment?'✅ دافع':'💰 ادفع'}</button>
+                            <button class="btn" style="background:var(--whatsapp)" onclick="showWhatsAppOptions(${i})">📱</button>
+                            <button class="btn" style="background:#5f3dc4" title="تغيير المجموعة" onclick="changeStudentGroup(${i})">🔁</button>
+                            <button class="btn" style="background:#2c3e50" title="حضور يدوي" onclick="markAttendanceManually(${i})">✔️</button>
+                            <button class="btn" style="background:var(--primary)" onclick="showAcademic(${i})">📝</button>
+                            <button class="btn" style="background:var(--info)" onclick="prepareQR(${i})">QR</button>
+                            <button class="btn" style="background:#f39c12" onclick="editStd(${i})">✎</button>
+                            <button class="btn" style="background:var(--danger)" onclick="del(${i})">🗑️</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>`;
+            } else {
+            html += `<tr class="desktop-row">
+                <td style="text-align:right; border-right:4px solid ${groupTheme}" class="${isDanger ? 'danger-glow' : ''}">
                     <b>${s.name}</b><br>
                     <span style="font-size:10px; color:var(--primary)">🎓 ${s.year} | 📍 ${s.center}</span><br>
                     <span class="pill">👥 ${s.groupName || 'بدون مجموعة'}</span>
@@ -1101,13 +979,13 @@ function addStudent() {
                     <a class="phone-link" href="tel:${s.sPhone}">📱 الطالب: ${s.sPhone}</a>
                     <a class="phone-link" href="tel:${s.pPhone}" style="color:var(--warning)">👨‍👩‍👦 ولي الأمر: ${s.pPhone}</a>
                 </td>
-                <td data-label="حالة الدفع"><button class="btn" style="background:${s.payment?'var(--success)':'#444'}" onclick="openPaymentModal(${i})">${s.payment?'✅ دافع':'💰 ادفع'}</button></td>
-                <td data-label="التواريخ">
+                <td><button class="btn" style="background:${s.payment?'var(--success)':'#444'}" onclick="openPaymentModal(${i})">${s.payment?'✅ دافع':'💰 ادفع'}</button></td>
+                <td>
                     <span class="small-date">📅 تسجيل: ${s.regDate}</span>
                     <span class="small-date" style="color:var(--success)">💳 دفع: ${s.payDate || '---'}</span>
                     <span class="small-date" style="color:var(--danger)">⚠️ غياب: ${missedCount}</span>
                 </td>
-                <td data-label="إدارة">
+                <td>
                     <div style="display:flex; gap:4px; justify-content:center;">
                         <button class="btn" style="background:var(--whatsapp)" onclick="showWhatsAppOptions(${i})">📱</button>
                         <button class="btn" style="background:#5f3dc4" title="تغيير المجموعة" onclick="changeStudentGroup(${i})">🔁</button>
@@ -1119,6 +997,7 @@ function addStudent() {
                     </div>
                 </td>
             </tr>`;
+            }
         }
     });
     
@@ -1333,6 +1212,10 @@ function sendQRWhatsApp(i) {
         downloadLink.setAttribute('download', `QR-${s.name}.png`);
         downloadLink.setAttribute('href', canvas.toDataURL("image/png"));
         downloadLink.click();
+        const saveHint = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+            ? '✅ الصورة اتجهزت. من صفحة المشاركة/التنزيلات احفظها في الصور.'
+            : '✅ تم تنزيل صورة الكود في مجلد التنزيلات.';
+        alert(saveHint);
     }               
 
     // نص الرسالة اللي اتفقنا عليه (ثابت زي ما هو)
@@ -1367,14 +1250,15 @@ function showAcademic(i) {
                     <small style="float:left">${e.date}</small>
                 </div>`).reverse().join('');
 
-let attLog = s.attendance.map((a, idx) => `
+let attLog = (s.attendanceLog || []).map((a, idx) => `
     <div class="log-item" style="border-right:3px solid var(--info)">
-        📅 حضور: <b>${a}</b>
+        📅 ${a.date || '---'}: <b>${a.status === 'present' ? 'حضور' : 'غياب'}</b>
         <span onclick="deleteAtt(${i}, ${idx})" style="color:var(--danger); cursor:pointer; float:left; font-weight:bold;">❌</span>
     </div>`).reverse().join('');
     function deleteAtt(studentIdx, itemIdx) {
     if(confirm("هل تريد مسح سجل الحضور هذا؟")) {
-        students[studentIdx].attendance.splice(itemIdx, 1);
+        if (!students[studentIdx].attendanceLog) students[studentIdx].attendanceLog = [];
+        students[studentIdx].attendanceLog.splice(itemIdx, 1);
         save(students[studentIdx]);
         showAcademic(studentIdx);
         draw();
@@ -1485,11 +1369,8 @@ function openScanner() {
                     return;
                 }
                 s.attendance = s.attendance || [];
-                s.attendance.push(new Date().toLocaleString('ar-EG'));
-                // إضافة السجل للجلسة النشطة فوراً لمنع التكرار لاحقاً
-                if (activeSession) {
-                    addOrUpdateSessionAttendanceLog(s, 'present', activeSession.id);
-                }
+                const hasPresentForSession = (s.attendanceLog || []).some(x => x.sessionId === activeSession.id && x.status === 'present');
+                if (!hasPresentForSession) s.attendance.push(new Date().toLocaleString('ar-EG'));
                 save(s); 
                 updateScannerSessionCount();
                 alert("✅ تم تسجيل حضور: " + s.name); 
@@ -1640,11 +1521,8 @@ function markAttendanceManually(i) {
         return;
     }
     s.attendance = s.attendance || [];
-    s.attendance.push(new Date().toLocaleString('ar-EG'));
-    // إضافة السجل للجلسة النشطة فوراً لمنع التكرار لاحقاً
-    if (activeSession) {
-        addOrUpdateSessionAttendanceLog(s, 'present', activeSession.id);
-    }
+    const hasPresentForSession = (s.attendanceLog || []).some(x => x.sessionId === activeSession.id && x.status === 'present');
+    if (!hasPresentForSession) s.attendance.push(new Date().toLocaleString('ar-EG'));
     save(s); // حفظ في الفايربيز والـ localStorage
     updateScannerSessionCount();
     draw(); // تحديث الجدول عشان تشوف التغيير
@@ -1732,6 +1610,14 @@ function ensureDataShape() {
                 at: a,
                 sessionId: `legacy-${s.id || 'student'}-${idx}`
             }));
+        }
+        if (s.attendanceLog.length) {
+            const uniqueBySession = new Map();
+            s.attendanceLog.forEach((entry, idx) => {
+                const key = entry?.sessionId || `legacy-${s.id || 'student'}-${idx}`;
+                uniqueBySession.set(key, { ...entry, sessionId: key });
+            });
+            s.attendanceLog = Array.from(uniqueBySession.values());
         }
     });
 }
@@ -2048,42 +1934,24 @@ function refreshSessionBanner() {
     applyGroupBackground(activeSession.groupId);
 }
 
-function addOrUpdateSessionAttendanceLog(student, status, sessionId) {
-    if (!student.attendanceLog) student.attendanceLog = [];
-    // التأكد من عدم تكرار الحضور لنفس الجلسة
-    const existingIndex = student.attendanceLog.findIndex(log => log.sessionId === sessionId);
-    const now = new Date().toLocaleString('ar-EG');
-    
-    const logEntry = {
-        date: getTodayDate(),
-        status: status, // 'present' or 'absent'
-        at: now,
-        sessionId: sessionId
-    };
-
-    if (existingIndex > -1) {
-        // تحديث السجل الموجود بدل الإضافة
-        student.attendanceLog[existingIndex] = logEntry;
-    } else {
-        student.attendanceLog.push(logEntry);
-    }
-}
-
 function endActiveSession() {
     if (!activeSession) return;
     if (!confirm('هل تريد إنهاء الحصة الحالية؟ سيتم تسجيل الغياب تلقائياً.')) return;
-    
+    const now = new Date().toLocaleString('ar-EG');
     students.forEach((s) => {
         if (s.groupId !== activeSession.groupId) return;
-        
         const attended = activeSession.presentStudentIds.includes(s.id);
-        
-        // استخدام الوظيفة الموحدة لمنع التكرار
-        addOrUpdateSessionAttendanceLog(s, attended ? 'present' : 'absent', activeSession.id);
-        
+        if (!s.attendanceLog) s.attendanceLog = [];
+        const existingEntry = s.attendanceLog.find(x => x.sessionId === activeSession.id);
+        if (existingEntry) {
+            existingEntry.date = activeSession.date;
+            existingEntry.status = attended ? 'present' : 'absent';
+            existingEntry.at = now;
+        } else {
+            s.attendanceLog.push({ date: activeSession.date, status: attended ? 'present' : 'absent', at: now, sessionId: activeSession.id });
+        }
         save(s);
     });
-    
     activeSession = null;
     localStorage.removeItem('active_session');
     syncActiveSessionToFirebase();
@@ -2603,79 +2471,52 @@ function downloadGroupNotebookFile() {
     const gid = document.getElementById('notebookGroup')?.value || '';
     const g = groups.find(x => x.id === gid);
     const list = students.filter(s => s.groupId === gid);
-    
     const rows = list.map((s, idx) => {
         const p = calculatePoints(s);
-        const att = (s.attendanceLog || []).slice(-3).map(a => a.status === 'present' ? '✔' : '✘').join(' | ') || '---';
+        const att = (s.attendanceLog || []).slice(-3).map(a => a.status === 'present' ? 'حضور' : 'غياب').join(' | ') || '---';
         const ex = (s.exams || []).slice(-3).map(e => `${e.score}/${e.total}`).join(' | ') || '---';
         const hw = (s.homeworks || []).slice(-3).map(h => h.rank).join(' | ') || '---';
-        const status = getNotebookFinancialStatus(s);
-        
-        return `
-        <tr style="background: ${idx % 2 === 0 ? '#f9f9f9' : '#fff'};">
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">${idx + 1}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: right; font-weight: bold;">${s.name}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center; color: #2e7d32;">${att}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">${ex}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">${hw}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center;">${status}</td>
-          <td style="border: 1px solid #ddd; padding: 10px; text-align: center; font-weight: bold; color: #6200ea;">${p.total}</td>
+        const lastPayTypes = (s.paymentLogs || []).slice().sort((a,b)=>Number(b.ts||0)-Number(a.ts||0)).slice(0,3).map(x => x.type || '---').join(' | ') || '---';
+        return `<tr>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${idx + 1}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${s.name}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${att}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${ex}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${hw}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${lastPayTypes}</td>
+          <td style="border:1px solid #bbb;padding:6px;text-align:center;">${p.total}</td>
         </tr>`;
     }).join('');
-
     const wrapper = document.createElement('div');
-    wrapper.style.padding = '30px';
+    wrapper.style.padding = '14px';
     wrapper.style.direction = 'rtl';
-    wrapper.style.fontFamily = 'Arial, sans-serif';
-    wrapper.style.backgroundColor = '#fff';
-    wrapper.style.color = '#000';
-
+    wrapper.style.fontFamily = 'Segoe UI, Tahoma, sans-serif';
     wrapper.innerHTML = `
-      <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #6200ea; padding-bottom: 20px;">
-        <h1 style="margin: 0; color: #6200ea; font-size: 28px;">نظام MOS3AB لإدارة الطلاب</h1>
-        <h2 style="margin: 10px 0; color: #333;">تقرير دفتر المجموعة: ${g?.name || '---'}</h2>
-        <div style="display: flex; justify-content: space-around; margin-top: 15px; font-size: 14px; color: #555;">
-          <span>📅 التاريخ: <b>${getTodayDate()}</b></span>
-          <span>👥 عدد الطلاب: <b>${list.length}</b></span>
-          <span>📍 السنتر: <b>${g?.center || '---'}</b></span>
-        </div>
-      </div>
-      
-      <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px;">
-        <thead>
-          <tr style="background-color: #6200ea; color: #ffffff;">
-            <th style="border: 1px solid #4527a0; padding: 12px;">#</th>
-            <th style="border: 1px solid #4527a0; padding: 12px; text-align: right;">اسم الطالب</th>
-            <th style="border: 1px solid #4527a0; padding: 12px;">آخر 3 حصص</th>
-            <th style="border: 1px solid #4527a0; padding: 12px;">آخر 3 امتحانات</th>
-            <th style="border: 1px solid #4527a0; padding: 12px;">آخر 3 واجبات</th>
-            <th style="border: 1px solid #4527a0; padding: 12px;">الحالة المالية</th>
-            <th style="border: 1px solid #4527a0; padding: 12px;">النقاط</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows || '<tr><td colspan="7" style="border:1px solid #ddd; padding:20px; text-align:center;">لا يوجد طلاب مسجلين في هذه المجموعة</td></tr>'}
-        </tbody>
+      <h2 style="margin:0 0 8px;">دفتر المجموعة - ${g?.name || '---'}</h2>
+      <div style="margin-bottom:10px;color:#333;">التاريخ: ${getTodayDate()} | عدد الطلاب: ${list.length}</div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead><tr>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">#</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">الطالب</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">آخر 3 حصص</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">آخر 3 امتحانات</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">آخر 3 واجبات</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">آخر 3 أنواع دفع</th>
+          <th style="border:1px solid #bbb;padding:6px;background:#efefef;">النقاط</th>
+        </tr></thead>
+        <tbody>${rows || '<tr><td colspan="7" style="border:1px solid #bbb;padding:8px;text-align:center;">لا يوجد طلاب</td></tr>'}</tbody>
       </table>
-      
-      <div style="margin-top: 40px; text-align: left; font-size: 10px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
-        تم استخراج هذا التقرير تلقائياً بواسطة نظام MOS3AB © 2026
-      </div>
     `;
-
     document.body.appendChild(wrapper);
-    const filename = `دفتر-${(g?.name || 'مجموعة').replace(/\s+/g, '-')}-${getTodayDate()}.pdf`;
-
+    const filename = `دفتر-المجموعة-${(g?.name || 'group').replace(/\s+/g, '-')}.pdf`;
     html2pdf().set({
-        margin: 10,
+        margin: 8,
         filename,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+        html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
     }).from(wrapper).save().then(() => {
         wrapper.remove();
-    }).catch((err) => {
-        console.error('PDF Error:', err);
+    }).catch(() => {
         wrapper.remove();
         alert('حدث خطأ أثناء توليد ملف PDF');
     });
@@ -2841,7 +2682,7 @@ function renderAllStudentsHub() {
             <button class="btn" style="background:#444" onclick="openPaymentModal(${realIdx})">الدفع</button>
             <button class="btn" style="background:var(--info)" onclick="prepareQR(${realIdx})">QR</button>
             <button class="btn" style="background:var(--danger)" onclick="del(${realIdx})">حذف</button>
-          </div>
+          </div>                
         </div>`;
       }).join('');
     document.getElementById('allStudentsHubList').innerHTML = rows ? rows : '<p>لا يوجد نتائج</p>';
